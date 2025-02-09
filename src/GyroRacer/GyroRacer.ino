@@ -1,35 +1,13 @@
-/*
- * Project: GyroRacer
- * Description: Simple arcade like motorcycling racing game controlled by gyroscope sensor. Game is short and more a technical demo
- * Hardward: Arduino Uno/Nano with gyroscope sensor MPU6050, SSD1306 OLED 128x64 pixel display and an optional passive buzzer
- * License: MIT License
- * Copyright (c) 2023 codingABI
- * 
- * created by codingABI https://github.com/codingABI/GyroRacer
- * 
- * History:
- * 21.05.2022, Initial version
- * 22.05.2022, Improve drift in curves, decrease automatic acceleration and increase minimum speed in grass
- * 24.05.2022, More sprites for player, change tracklist format from start to segment length
- * 25.05.2022, Change tracklist to define type of a segment (curve, finish gate...). Add curve warnings/triangles. Move g_sin128 to PROGMEM to reduce memory consumption
- * 26.05.2022, Add a demo mode to play the game automatically without a gyroscope sensor
- * 27.05.2022, Release version v0.1.0
- * 28.05.2022, Add delay for setup in demo mode to show intro text
- * 21.03.2023, Make sky movements more realistic
- * 21.03.2023, Release version v0.2.0
- * 22.03.2023, Make sky movements dependent on speed
- */
- 
+
 //#define DEMOMODE // uncomment this line, if you want only the demo mode without a gyroscope sensor
 
 #include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h> // dont forget to uncomment #define SSD1306_NO_SPLASH in Adafruit_SSD1306.h to free program storage
+#include <Adafruit_SSD1306.h> // dont forget to uncomment #define  in .h to free  storage
 
 #ifndef DEMOMODE
 
-// we need I2Cdev from https://github.com/jrowberg/i2cdevlib
 #include <I2Cdev.h>
-#include <MPU6050_6Axis_MotionApps20.h> // older, but smaller (~1k) binary than <MPU6050_6Axis_MotionApps612.h>
+#include <MPU6050_6Axis_MotionApps20.h> // older, but smaller (
 
 #endif 
 
@@ -81,7 +59,7 @@ signed char g_streetMiddle; // center of street
 #define SPRITEWIDTH 16 // width of sprite, in pixels
 #define SPRITEHEIGHT 16 // height of sprite, in pixels
 
-// sprites made with gimp and converted bye https://javl.github.io/image2cpp/
+// sprites
 #define INDIVIDUALSPRITES 7
 // white pixels for motorcycle sprites
 const PROGMEM byte g_whiteSprites [INDIVIDUALSPRITES][SPRITEWIDTH/8*SPRITEHEIGHT] = {
@@ -444,7 +422,7 @@ void setup(void) {
   #endif
 
    // OLED init
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Default Address is 0x3D for 128x64, but my OLED uses 0x3C 
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Default
     // SSD1306 allocation failed
     blink(1000);
     blink(1000);
